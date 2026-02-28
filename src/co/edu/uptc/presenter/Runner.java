@@ -11,9 +11,9 @@ import co.edu.uptc.exceptions.InvalidRouteException;
 
 public class Runner {
 
-    static PresenterInterface presenter;
-    static ModelInterface model;
-    static ViewInterface view;
+    private PresenterInterface presenter;
+    private ModelInterface model;
+    private ViewInterface view;
     private File directory;
 
     public Runner(File directory) {
@@ -32,7 +32,6 @@ public class Runner {
 
     public void start() throws InvalidRouteException {
         makeMVP();
-        presenter.validateRoute();
         view.start();
     }
 }

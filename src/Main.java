@@ -13,7 +13,7 @@ public class Main {
             File directory = new File(args[0]);
             Runner runner = new Runner(directory);
             runner.start();
-            //TODO Mejorar mensaje
+            //TODO Cambiar mensaje
             System.out.println("Ruta valida");
         }catch (InvalidRouteException e) {
             System.out.println("Error: " + e.getMessage());

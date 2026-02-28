@@ -8,7 +8,7 @@ import co.edu.uptc.exceptions.InvalidRouteException;
 
 public class MainPresenter implements PresenterInterface{
     private ViewInterface view; 
-    private ModelInterface model; 
+    private ModelInterface model;
 
     @Override
     public void setView(ViewInterface view) {
@@ -20,10 +20,6 @@ public class MainPresenter implements PresenterInterface{
         this.model = model; 
     }
 
-    @Override
-    public void validateRoute() throws InvalidRouteException{
-        model.validateRoute();
-    }
 
 }
 
