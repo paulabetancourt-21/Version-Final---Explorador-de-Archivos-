@@ -1,0 +1,11 @@
+# Carpetas de IDE
+.idea/
+.vscode/
+
+# Archivos de proyecto IntelliJ
+*.iml
+
+# Archivos compilados
+bin/
+out/
+*.class
