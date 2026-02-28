@@ -2,6 +2,8 @@ package co.edu.uptc.model;
 
 import co.edu.uptc.interfaces.ModelInterface;
 import java.io.File;
+import co.edu.uptc.exceptions.InvalidRouteException;
+
 
 public class FileExplorer implements ModelInterface{
     private File directoryPath;
@@ -16,14 +18,11 @@ public class FileExplorer implements ModelInterface{
     }
 
     @Override
-    public boolean validateRoute() throws Exception {
-        boolean flag = false;
-        if (!directoryPath.exists()){
-            throw new Exception("La ruta ingresada no es valida");
-        }else {
-            flag = directoryPath.exists();
+    public boolean validateRoute() throws InvalidRouteException {
+        if (!directoryPath.exists()) {
+            throw new InvalidRouteException("La ruta ingresada no es valida");
         }
-        return flag;
+        return true;
     }
 
 }

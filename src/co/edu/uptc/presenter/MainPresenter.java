@@ -3,6 +3,8 @@ package co.edu.uptc.presenter;
 import co.edu.uptc.interfaces.ModelInterface;
 import co.edu.uptc.interfaces.PresenterInterface;
 import co.edu.uptc.interfaces.ViewInterface;
+import co.edu.uptc.exceptions.InvalidRouteException;
+
 
 public class MainPresenter implements PresenterInterface{
     private ViewInterface view; 
@@ -17,4 +19,11 @@ public class MainPresenter implements PresenterInterface{
     public void setModel(ModelInterface model) {
         this.model = model; 
     }
+
+    @Override
+    public void validateRoute() throws InvalidRouteException{
+        model.validateRoute();
+    }
+
 }
+

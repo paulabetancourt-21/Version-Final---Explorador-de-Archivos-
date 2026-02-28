@@ -6,6 +6,8 @@ import co.edu.uptc.interfaces.ViewInterface;
 import co.edu.uptc.model.FileExplorer;
 import co.edu.uptc.view.ConsoleView;
 import java.io.File;
+import co.edu.uptc.exceptions.InvalidRouteException;
+
 
 public class Runner {
 
@@ -28,8 +30,9 @@ public class Runner {
         view.setPresenter(presenter);
     }
 
-    public void start() {
+    public void start() throws InvalidRouteException {
         makeMVP();
+        presenter.validateRoute();
         view.start();
     }
 }
