@@ -14,8 +14,11 @@ public class ConsoleView implements ViewInterface {
     private static final String COLOR_FILE = "\u001B[34m";
     private static final String COLOR_RESET   = "\u001B[0m";
     public static final String ERROR_PRO = "\u001B[91;1m";
-    public static final String WARNING_COLOR = "\u001B[38;5;220;1m"; // amarillo dorado
-    public static final String DANGER_WARNING = "\u001B[38;5;208;1m"; // naranja intenso
+    public static final String WARNING_COLOR = "\u001B[38;5;220;1m";
+    public static final String DANGER_WARNING = "\u001B[38;5;208;1m";
+    //public static final String INFO_COLOR = "\u001B[38;5;141m";
+    public static final String INFO_COLOR = "\u001B[38;5;75m";
+
 
 
     public ConsoleView(){
@@ -33,7 +36,7 @@ public class ConsoleView implements ViewInterface {
     } 
 
     public void showMessage(String message){
-        System.out.println(message);
+        System.out.println(INFO_COLOR + message + COLOR_RESET);
     }
 
     public String readData(String message){
@@ -82,6 +85,7 @@ public class ConsoleView implements ViewInterface {
                 + COLOR_RESET);
     }
 
+    @Override
     public String showDangerWarning(String message) {
         String data = readData(DANGER_WARNING +
                 "\n═══════════════════════════════════════════════════════════════════" +
