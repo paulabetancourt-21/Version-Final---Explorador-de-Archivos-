@@ -16,6 +16,7 @@ public class FileExplorer implements ModelInterface {
     public List<File> findFiles(String pattern) {
         return findRecursive(directoryPath, pattern);
     }
+
 //TODO PONER COMENTARIOS, POR QUE ESTOS METODOS SI ESTAN COMPLEJOS DE ENTENDER
     private List<File> findRecursive(File folder, String pattern) {
         List<File> matched = new ArrayList<>();
@@ -114,7 +115,10 @@ public class FileExplorer implements ModelInterface {
         return file.delete();
     }
 
-
+    public boolean exists(String fileName) {
+        File file = new File(directoryPath, fileName);
+        return file.exists();
+    }
 
 
 }

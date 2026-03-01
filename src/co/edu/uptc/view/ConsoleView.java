@@ -6,7 +6,6 @@ import java.io.File;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class ConsoleView implements ViewInterface {
     private PresenterInterface presenter;
     private Scanner console;
@@ -14,6 +13,7 @@ public class ConsoleView implements ViewInterface {
     private static final String COLOR_DIRECTORY = "\u001B[36m";
     private static final String COLOR_FILE = "\u001B[34m";
     private static final String COLOR_RESET   = "\u001B[0m";
+    public static final String ERROR_PRO = "\u001B[38;5;199;1m";
 
     public ConsoleView(){
         console = new Scanner(System.in);
@@ -49,6 +49,13 @@ public class ConsoleView implements ViewInterface {
             }
         }
         return formattedData;
+    }
+
+    @Override
+    public void show_Error(String message) {
+        showMessage(ERROR_PRO + "/***********************************/" + COLOR_RESET);
+        showMessage(message);
+        showMessage(ERROR_PRO + "/***********************************/" + COLOR_RESET);
     }
 
     public void menu(){

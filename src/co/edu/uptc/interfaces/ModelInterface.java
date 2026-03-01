@@ -6,11 +6,12 @@ import java.io.File;
 import java.util.List;
 
 public interface ModelInterface {
-    public List<File> findFiles(String pattern);
-    public long rootFolderSize();
-    public List<File> listRootContents();
-    public List<File> listDirectoryContents(String subFolderName);
-    public boolean deleteFile(String fileName);
+    List<File> findFiles(String pattern);
+    long rootFolderSize();
+    List<File> listRootContents();
+    List<File> listDirectoryContents(String subFolderName);
+    boolean deleteFile(String fileName);
+    boolean exists(String fileName);
 
 
 }
