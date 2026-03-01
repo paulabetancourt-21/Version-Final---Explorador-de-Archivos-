@@ -9,5 +9,8 @@ public interface ViewInterface {
     String readData(String message);
     void showMessage(String message);
     String showListInformation(List<File> data);
-    void show_Error(String message);
+    void showError(String message);
+    int readIntOption(String message);
+    void showWarning(String message);
+    String showDangerWarning(String message);
 }

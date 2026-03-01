@@ -13,7 +13,10 @@ public class ConsoleView implements ViewInterface {
     private static final String COLOR_DIRECTORY = "\u001B[36m";
     private static final String COLOR_FILE = "\u001B[34m";
     private static final String COLOR_RESET   = "\u001B[0m";
-    public static final String ERROR_PRO = "\u001B[38;5;199;1m";
+    public static final String ERROR_PRO = "\u001B[91;1m";
+    public static final String WARNING_COLOR = "\u001B[38;5;220;1m"; // amarillo dorado
+    public static final String DANGER_WARNING = "\u001B[38;5;208;1m"; // naranja intenso
+
 
     public ConsoleView(){
         console = new Scanner(System.in);
@@ -39,6 +42,16 @@ public class ConsoleView implements ViewInterface {
         return data;
     }
 
+    public int readIntOption(String message){
+        int option = 0;
+        try{
+        option = Integer.parseInt(readData(message));
+        } catch (NumberFormatException e) {
+            showError("El formato ingresado no es valido");
+        }
+        return option;
+    }
+
     public String showListInformation(List<File> data) {
         String formattedData = "";
         for (File f : data) {
@@ -52,17 +65,39 @@ public class ConsoleView implements ViewInterface {
     }
 
     @Override
-    public void show_Error(String message) {
-        showMessage(ERROR_PRO + "/***********************************/" + COLOR_RESET);
-        showMessage(message);
-        showMessage(ERROR_PRO + "/***********************************/" + COLOR_RESET);
+    public void showError(String message) {
+        showMessage(ERROR_PRO +
+                "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" +
+                "\n    ERROR: " + message +
+                "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+                + COLOR_RESET);
     }
+
+    @Override
+    public void showWarning(String message) {
+        showMessage(WARNING_COLOR +
+                "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" +
+                "\n     ⚠: " + message +
+                "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+                + COLOR_RESET);
+    }
+
+    public String showDangerWarning(String message) {
+        String data = readData(DANGER_WARNING +
+                "\n═══════════════════════════════════════════════════════════════════" +
+                "\n       ⚠⚠  ¡CUIDADO ESTA APUNTO DE ELIMINAR UN ARCHIVO!!  ⚠⚠" +
+                "\n"  + message +
+                "\n═══════════════════════════════════════════════════════════════════\n"
+                + COLOR_RESET);
+        return data;
+    }
+
 
     public void menu(){
         int option = 0;
         do {
             menu.systemMenu();
-             option = Integer.parseInt(readData("Ingrese una opción: "));
+             option = readIntOption("Ingrese una opción: ");
             switch (option){
                 case 1 -> presenter.searchArchiveParameters();
                 case 2 -> presenter.rootFolderSize();
@@ -72,7 +107,6 @@ public class ConsoleView implements ViewInterface {
                     showMessage("Saliendo del sistema");
                     System.exit(0);
                 }
-                default -> showMessage("La opción ingresada no es valida");
             }
         }while (option!=5);
     }

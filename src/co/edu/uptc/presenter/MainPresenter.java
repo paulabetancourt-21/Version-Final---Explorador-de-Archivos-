@@ -24,7 +24,7 @@ public class MainPresenter implements PresenterInterface{
         String nameFileOrFilter = view.readData("Ingrese el nombre de un archivo o un comodín: ");
         List<File> findFiles = model.findFiles(nameFileOrFilter.toLowerCase().trim());
         if (findFiles.isEmpty()){
-            view.showMessage("No se encontraron coincidencias");
+            view.showWarning("No se encontraron coincidencias");
         }else {
             view.showMessage(view.showListInformation(findFiles));
             view.showMessage("Cantidad encontrada: " + findFiles.size());
@@ -39,7 +39,7 @@ public class MainPresenter implements PresenterInterface{
         String directory = view.readData("Ingrese el nombre de una carpeta para ver su contenido: ").toLowerCase().trim();
         List<File> listDirectory = model.listDirectoryContents(directory);
         if(listDirectory.isEmpty()){
-            view.showMessage("No se encontro información de la carpeta " + directory);
+            view.showWarning("No se encontro información de la carpeta " + directory);
         }else{
             view.showMessage(view.showListInformation(listDirectory));
         }
@@ -49,7 +49,7 @@ public class MainPresenter implements PresenterInterface{
         String fileDelete;
         fileDelete = view.readData("Ingrese el nombre del archivo o carpeta que quiere eliminar: ");
         if (model.exists(fileDelete)){
-            String option = view.readData("¿Desea eliminar permanentemente este archivo? SI / NO");
+            String option = view.showDangerWarning("¿Desea eliminar permanentemente este archivo? Ingrese:  SI / NO");
             if (option.equalsIgnoreCase("si".trim())){
                 model.deleteFile(fileDelete);
                 view.showMessage("Archivo eliminado correctamente");
