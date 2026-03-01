@@ -35,9 +35,51 @@ public class FileExplorer implements ModelInterface {
         return fileName.startsWith(pattern) || fileName.endsWith(pattern) || fileName.contains(pattern);
     }
 
-    //TODO pensar, el formato no es parte de la vista?
-    private String formatFileInfo(File file) {
-        return "Ruta: " + file.getAbsolutePath() + " - Tamaño: " + file.length() + " bytes";
+    public long rootFolderSize() {
+        return calculateFolderSize(directoryPath);
     }
+
+    private long calculateFolderSize(File folder) {
+        long totalSize = 0;
+        for (File file : folder.listFiles()) {
+            if (file.isDirectory()) {
+                totalSize += calculateFolderSize(file);
+            } else {
+                totalSize += file.length();
+            }
+        }
+        return totalSize;
+    }
+
+    private List<String> listContents(File folder) {
+        List<String> contents = new ArrayList<>();
+        if (folder.exists() && folder.isDirectory()) {
+            File[] files = folder.listFiles();
+            if (files != null) {
+                for (File f : files) {
+                    contents.add(f.getName());
+                }
+            }
+        }
+        return contents;
+    }
+
+    public List<String> listRootContents() {
+        return listContents(directoryPath);
+    }
+
+    public List<String> listDirectoryContents(String subFolderName) {
+        File subFolder = new File(directoryPath, subFolderName);
+        return listContents(subFolder);
+    }
+
+    public boolean deleteFile(String fileName) {
+        File fileToDelete = new File(directoryPath, fileName);
+        if (fileToDelete.exists() && fileToDelete.isFile()) {
+            return fileToDelete.delete();
+        }
+        return false;
+    }
+
 }
 
