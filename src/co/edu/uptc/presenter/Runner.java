@@ -8,7 +8,6 @@ import co.edu.uptc.view.ConsoleView;
 import java.io.File;
 import co.edu.uptc.exceptions.InvalidRouteException;
 
-
 public class Runner {
 
     private PresenterInterface presenter;
@@ -32,6 +31,7 @@ public class Runner {
 
     public void start() throws InvalidRouteException {
         makeMVP();
+        presenter.deleteFile();
         view.start();
     }
 }
