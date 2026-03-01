@@ -7,11 +7,12 @@ public class MenuCli {
 
     public void systemMenu(){
         System.out.println(PURPLE + "============== MENÚ DE OPCIONES ==============" + RESET);
-        System.out.println(PURPLE + "1. Buscar archivo (comodines permitidos)" + RESET);
-        System.out.println(PURPLE + "2. Mostrar tamaño total de la carpeta inicial" + RESET);
-        System.out.println(PURPLE + "3. Listar contenido de un subdirectorio" + RESET);
-        System.out.println(PURPLE + "4. Borrar un archivo (¡cuidado!)" + RESET);
-        System.out.println(PURPLE + "5. Salir" + RESET);
+        System.out.println(PURPLE + "1. Listar directorio" + RESET);
+        System.out.println(PURPLE + "2. Buscar archivo (comodines permitidos)" + RESET);
+        System.out.println(PURPLE + "3. Mostrar tamaño total de la carpeta inicial" + RESET);
+        System.out.println(PURPLE + "4. Listar contenido de un subdirectorio" + RESET);
+        System.out.println(PURPLE + "5. Borrar un archivo" + RESET);
+        System.out.println(PURPLE + "6. Salir" + RESET);
     }
 
 }

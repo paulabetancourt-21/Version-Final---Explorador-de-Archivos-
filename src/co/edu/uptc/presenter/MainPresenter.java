@@ -20,6 +20,10 @@ public class MainPresenter implements PresenterInterface{
         this.model = model; 
     }
 
+    public void listDirectoryPath(){
+        view.showMessage(view.showListInformation(model.listDirectoryPath()));
+    }
+
     public void searchArchiveParameters() {
         String nameFileOrFilter = view.readData("Ingrese el nombre del archivo o carpeta: completo, parcial, con extensión o solo la extensión (ej: reporte, rep, hola.txt, .txt)");
         List<File> findFiles = model.findFiles(nameFileOrFilter.toLowerCase().trim());
@@ -40,17 +44,21 @@ public class MainPresenter implements PresenterInterface{
     public void listSpecificDirectory(){
         String directory = view.readData("Ingrese el nombre de una carpeta de la ruta principal para ver su contenido: ").toLowerCase().trim();
         List<File> listDirectory = model.listDirectoryContents(directory);
-        if(listDirectory.isEmpty()){
-            view.showWarning("No se encontro información de la carpeta " + directory);
-        }else{
-            view.showMessage(view.showListInformation(listDirectory));
+        if (model.exists(directory)){
+            if (listDirectory.isEmpty()){
+                view.showWarning("La carpeta ingresada esta vacia");
+            }else {
+                view.showMessage(view.showListInformation(listDirectory));
+            }
+        }else {
+            view.showWarning("La carpeta " + directory + " no existe");
+            }
         }
-    }
 
     private boolean confirmDeletion() {
         while (true) {
             String option = view.showDangerWarning(
-                    "¿Desea eliminar permanentemente este archivo? (SI / NO): "
+                    "   ¿Desea eliminar permanentemente este archivo? (SI / NO): "
             ).trim().toLowerCase();
             if (option.equals("si")) return true;
             if (option.equals("no")) return false;
@@ -61,13 +69,14 @@ public class MainPresenter implements PresenterInterface{
     public void deleteFile() {
         String fileDelete = view.readData(
                 "Ingrese el nombre del archivo o carpeta que quiere eliminar del directorio principal: ");
-        if (!model.exists(fileDelete)) {
+        if(!model.exists(fileDelete)) {
             view.showWarning("El archivo o carpeta ingresado no existe");
         }else if (confirmDeletion()) {
             model.deleteFile(fileDelete);
             view.showMessage("Archivo eliminado correctamente");
-        } else {
+        }else{
             view.showMessage("Operación cancelada");
         }
     }
+
 }

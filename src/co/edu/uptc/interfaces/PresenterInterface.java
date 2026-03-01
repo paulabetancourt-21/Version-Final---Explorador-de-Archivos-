@@ -9,4 +9,5 @@ public interface PresenterInterface {
     void rootFolderSize();
     void listSpecificDirectory();
     void deleteFile();
+    void listDirectoryPath();
 }

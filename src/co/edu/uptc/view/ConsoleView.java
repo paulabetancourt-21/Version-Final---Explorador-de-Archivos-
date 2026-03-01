@@ -100,15 +100,16 @@ public class ConsoleView implements ViewInterface {
             menu.systemMenu();
              option = readIntOption("Ingrese una opción: ");
             switch (option){
-                case 1 -> presenter.searchArchiveParameters();
-                case 2 -> presenter.rootFolderSize();
-                case 3 -> presenter.listSpecificDirectory();
-                case 4 -> presenter.deleteFile();
-                case 5 -> {
+                case 1 -> presenter.listDirectoryPath();
+                case 2 -> presenter.searchArchiveParameters();
+                case 3 -> presenter.rootFolderSize();
+                case 4 -> presenter.listSpecificDirectory();
+                case 5 -> presenter.deleteFile();
+                case 6 -> {
                     showMessage("Gracias por usar el sistema");
                 }
-                default -> showWarning("Ingrese un número entre 1 y 5");
+                default -> showWarning("Ingrese un número entre 1 y 6");
             }
-        }while (option!=5);
+        }while (option!=6);
     }
 }

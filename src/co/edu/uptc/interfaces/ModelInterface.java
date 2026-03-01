@@ -12,6 +12,7 @@ public interface ModelInterface {
     List<File> listDirectoryContents(String subFolderName);
     boolean deleteFile(String fileName);
     boolean exists(String fileName);
+    List<File> listDirectoryPath();
 
 
 }

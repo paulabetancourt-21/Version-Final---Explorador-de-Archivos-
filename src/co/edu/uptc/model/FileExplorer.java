@@ -87,6 +87,9 @@ public class FileExplorer implements ModelInterface {
         return contents;
     }
 
+    public List<File> listDirectoryPath(){
+        return listContents(directoryPath);
+    }
     // Listar los contenidos de la carpeta principal
     public List<File> listRootContents() {
         return listContents(directoryPath);
