@@ -8,7 +8,6 @@ import java.util.List;
 public class FileExplorer implements ModelInterface {
     private File directoryPath;
 
-    //Constructor
     public FileExplorer(File directoryPath) {
         this.directoryPath = directoryPath;
     }
