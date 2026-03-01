@@ -10,12 +10,14 @@ import java.util.Scanner;
 public class ConsoleView implements ViewInterface {
     private PresenterInterface presenter;
     private Scanner console;
-    private static final String COLOR_DIRECTORY = "\u001B[32m";
+    private MenuCli menu;
+    private static final String COLOR_DIRECTORY = "\u001B[36m";
     private static final String COLOR_FILE = "\u001B[34m";
     private static final String COLOR_RESET   = "\u001B[0m";
 
     public ConsoleView(){
         console = new Scanner(System.in);
+        menu = new MenuCli();
     }
     @Override
     public void setPresenter(PresenterInterface presenter) {
@@ -24,6 +26,7 @@ public class ConsoleView implements ViewInterface {
 
     @Override
     public void start() {
+        menu();
     } 
 
     public void showMessage(String message){
@@ -36,7 +39,6 @@ public class ConsoleView implements ViewInterface {
         return data;
     }
 
-    //FORMATEA LA INFROMACIÓN PROPORCIONADA
     public String showListInformation(List<File> data) {
         String formattedData = "";
         for (File f : data) {
@@ -49,5 +51,22 @@ public class ConsoleView implements ViewInterface {
         return formattedData;
     }
 
-
+    public void menu(){
+        int option = 0;
+        do {
+            menu.systemMenu();
+             option = Integer.parseInt(readData("Ingrese una opción: "));
+            switch (option){
+                case 1 -> presenter.searchArchiveParameters();
+                case 2 -> presenter.rootFolderSize();
+                case 3 -> presenter.listSpecificDirectory();
+                case 4 -> presenter.deleteFile();
+                case 5 -> {
+                    showMessage("Saliendo del sistema");
+                    System.exit(0);
+                }
+                default -> showMessage("La opción ingresada no es valida");
+            }
+        }while (option!=5);
+    }
 }

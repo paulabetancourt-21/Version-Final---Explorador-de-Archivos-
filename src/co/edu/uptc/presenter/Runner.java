@@ -31,7 +31,6 @@ public class Runner {
 
     public void start() throws InvalidRouteException {
         makeMVP();
-        presenter.deleteFile();
         view.start();
     }
 }
