@@ -11,5 +11,4 @@ public interface ModelInterface {
     boolean exists(String fileName);
     List<File> listDirectoryPath();
 
-
 }

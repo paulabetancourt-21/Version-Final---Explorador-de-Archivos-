@@ -17,7 +17,6 @@ public class FileExplorer implements ModelInterface {
         return findRecursive(directoryPath, pattern);
     }
 
-
     private List<File> findRecursive(File folder, String pattern) {
         List<File> matched = new ArrayList<>();
         File[] list = folder.listFiles();

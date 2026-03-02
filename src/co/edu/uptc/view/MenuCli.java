@@ -7,7 +7,7 @@ public class MenuCli {
 
     public void systemMenu(){
         System.out.println(PURPLE + "============== MENÚ DE OPCIONES ==============" + RESET);
-        System.out.println(PURPLE + "1. Listar directorio" + RESET);
+        System.out.println(PURPLE + "1. Listar directorio principal" + RESET);
         System.out.println(PURPLE + "2. Buscar archivo (comodines permitidos)" + RESET);
         System.out.println(PURPLE + "3. Mostrar tamaño total de la carpeta inicial" + RESET);
         System.out.println(PURPLE + "4. Listar contenido de un subdirectorio" + RESET);
