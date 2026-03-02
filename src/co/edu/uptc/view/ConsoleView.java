@@ -10,10 +10,10 @@ public class ConsoleView implements ViewInterface {
     private PresenterInterface presenter;
     private Scanner console;
     private MenuCli menu;
+    public static final String ERROR_PRO = "\u001B[91;1m";
     private static final String COLOR_DIRECTORY = "\u001B[36m";
     private static final String COLOR_FILE = "\u001B[34m";
     private static final String COLOR_RESET   = "\u001B[0m";
-    public static final String ERROR_PRO = "\u001B[91;1m";
     public static final String WARNING_COLOR = "\u001B[38;5;220;1m";
     public static final String DANGER_WARNING = "\u001B[38;5;208;1m";
     public static final String INFO_COLOR = "\u001B[38;5;75m";
@@ -67,9 +67,9 @@ public class ConsoleView implements ViewInterface {
     @Override
     public void showError(String message) {
         showMessage(ERROR_PRO +
-                "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" +
-                "\n    ERROR: " + message +
-                "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" +
+                "\n  ERROR: " + message +
+                "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                 + COLOR_RESET);
     }
 

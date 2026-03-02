@@ -1,7 +1,8 @@
-import co.edu.uptc.model.FileExplorer;
 import co.edu.uptc.presenter.Runner;
 import co.edu.uptc.exceptions.InvalidRouteException;
 import co.edu.uptc.util.ValidateFilePath;
+import co.edu.uptc.interfaces.ViewInterface;
+import co.edu.uptc.view.ConsoleView;
 
 import java.io.File;
 
@@ -14,7 +15,8 @@ public class Main {
             Runner runner = new Runner(directory);
             runner.start();
         }catch (InvalidRouteException e) {
-            System.out.println("Error: " + e.getMessage());
+            ViewInterface view = new ConsoleView();
+            view.showError(e.getMessage());
         }
     }
 }

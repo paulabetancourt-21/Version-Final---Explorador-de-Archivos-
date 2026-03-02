@@ -20,10 +20,12 @@ public class MainPresenter implements PresenterInterface{
         this.model = model; 
     }
 
+    @Override
     public void listDirectoryPath(){
         view.showMessage(view.showListInformation(model.listDirectoryPath()));
     }
 
+    @Override
     public void searchArchiveParameters() {
         String nameFileOrFilter = view.readData("Ingrese el nombre del archivo o carpeta: completo, parcial, con extensión o solo la extensión (ej: reporte, rep, hola.txt, .txt)");
         List<File> findFiles = model.findFiles(nameFileOrFilter.toLowerCase().trim());
@@ -37,10 +39,12 @@ public class MainPresenter implements PresenterInterface{
         }
     }
 
+    @Override
     public void rootFolderSize(){
         view.showMessage("El tamaño del directorio principal es de: " + model.rootFolderSize() + " bytes" + "\n");
     }
 
+    @Override
     public void listSpecificDirectory(){
         String directory = view.readData("Ingrese el nombre de una carpeta de la ruta principal para ver su contenido: ").toLowerCase().trim();
         List<File> listDirectory = model.listDirectoryContents(directory);
@@ -66,6 +70,7 @@ public class MainPresenter implements PresenterInterface{
         }
     }
 
+    @Override
     public void deleteFile() {
         String fileDelete = view.readData(
                 "Ingrese el nombre del archivo o carpeta que quiere eliminar del directorio principal: ");

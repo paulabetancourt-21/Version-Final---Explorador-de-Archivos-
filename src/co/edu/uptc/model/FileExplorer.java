@@ -12,11 +12,12 @@ public class FileExplorer implements ModelInterface {
         this.directoryPath = directoryPath;
     }
 
+    @Override
     public List<File> findFiles(String pattern) {
         return findRecursive(directoryPath, pattern);
     }
 
-//TODO PONER COMENTARIOS, POR QUE ESTOS METODOS SI ESTAN COMPLEJOS DE ENTENDER
+
     private List<File> findRecursive(File folder, String pattern) {
         List<File> matched = new ArrayList<>();
         File[] list = folder.listFiles();
@@ -29,38 +30,36 @@ public class FileExplorer implements ModelInterface {
         }
         return matched;
     }
-
+    //Es carpeta y coincide con el patron?
     private void addDirectoryIfMatches(File f, String pattern, List<File> matched) {
         if (f.isDirectory() && matchesPattern(f.getName(), pattern)) {
             matched.add(f);
         }
     }
-
+    //Es un archivo y coincide con el patron?
     private void addFileIfMatches(File f, String pattern, List<File> matched) {
         if (f.isFile() && matchesPattern(f.getName(), pattern)) {
             matched.add(f);
         }
     }
-
+    //Entra en la carpeta a buscar el patron
     private void recurseIntoDirectory(File f, String pattern, List<File> matched) {
         if (f.isDirectory()) {
             matched.addAll(findRecursive(f, pattern));
         }
     }
-
+    //patron -> empieza, termina o contiene el patron en alguna parte
     private boolean matchesPattern(String name, String pattern) {
         String lower = name.toLowerCase();
         String pat = pattern.toLowerCase();
         return lower.startsWith(pat) || lower.endsWith(pat) || lower.contains(pat);
     }
 
-
-    //tamaño de la carpeta carpeta principal
+    @Override
     public long rootFolderSize() {
         return calculateFolderSize(directoryPath);
     }
 
-    //metodo privado para calcular el tamaño del directorio y devuelve el peso en bytes
     private long calculateFolderSize(File folder) {
         long totalSize = 0;
         for (File file : folder.listFiles()) {
@@ -73,7 +72,6 @@ public class FileExplorer implements ModelInterface {
         return totalSize;
     }
 
-    // Listar los contenidos de cualquier carpeta y devolverlos como objetos File
     private List<File> listContents(File folder) {
         List<File> contents = new ArrayList<>();
         if (folder.exists() && folder.isDirectory()) {
@@ -87,21 +85,18 @@ public class FileExplorer implements ModelInterface {
         return contents;
     }
 
+    @Override
     public List<File> listDirectoryPath(){
         return listContents(directoryPath);
     }
-    // Listar los contenidos de la carpeta principal
-    public List<File> listRootContents() {
-        return listContents(directoryPath);
-    }
 
-    // Listar los contenidos de un subdirectorio
+   @Override
     public List<File> listDirectoryContents(String subFolderName) {
         File subFolder = new File(directoryPath, subFolderName);
         return listContents(subFolder);
     }
 
-    //Eliminar un archivo en especifico -> de la carpeta principal o de toda la carpeta?
+    @Override
     public boolean deleteFile(String fileName) {
         File fileToDelete = new File(directoryPath, fileName);
         return deleteFileRecursive(fileToDelete);
@@ -117,6 +112,7 @@ public class FileExplorer implements ModelInterface {
         return file.delete();
     }
 
+    @Override
     public boolean exists(String fileName) {
         File file = new File(directoryPath, fileName);
         return file.exists();
